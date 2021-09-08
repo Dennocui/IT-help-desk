@@ -1,28 +1,65 @@
 version: '3'
 services:
-  appseed-app:
+  db:
+    container_name: issue_log_pg_container
+    image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASS: times
+      POSTGRES_DB: issue_log
+      POSTGRES_PORT: 5433
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5433:5433"
+    volumes:
+      - pgdata:/var/lib/postgresql/data2/
+
+      # cat dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql | docker exec -i {pg_container} psql -U {admin} -d {ffs1}
+  pgadmin:
+    container_name: issue_log_pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    depends_on:
+      - db
+    ports:
+      - "6060:80"
+
+  issue_log:
     restart: always
     env_file: .env
-    build: .
-    ports:
-      - "5005:5005"
-    networks:
-      - db_network
-      - web_network
-  nginx:
-    restart: always
-    image: "nginx:latest"
-    ports:
-      - "85:85"
+    build: 
+      context: .
+    command: python /code/manage.py runserver 0.0.0.0:4301
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-    networks:
-      - web_network
-    depends_on: 
-      - appseed-app
-networks:
-  db_network:
-    driver: bridge
-  web_network:
-    driver: bridge
+      - .:/code
+    ports:
+      - 4301:4301
+    # networks:
+    #   - db_network
+    #   - web_network
+    depends_on:
+      - db
+
+  migration:
+    image: it-help-desk_issue_log
+    command: python /code/manage.py migrate --noinput
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+
+
+# networks:
+#   db_network:
+#     driver: bridge
+#   web_network:
+#     driver: bridge
+
+volumes:
+  pgdata:
+  
  

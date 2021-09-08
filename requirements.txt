@@ -1,6 +1,6 @@
 asgiref
 autopep8
-django==2.2.10
+django==3.2.4
 pycodestyle
 pytz
 sqlparse
@@ -9,3 +9,14 @@ dj-database-url
 python-decouple
 gunicorn
 whitenoise
+django-admin-rangefilter==0.8.1
+django-auditlog==0.4.7
+django-daterange-filter==1.3.0
+django-daterangefilter==1.0.0
+django-filter==2.4.0
+django-jsonfield==1.4.1
+django-smart-selects==1.5.9
+djangorestframework==3.12.4
+psycopg2-binary==2.8.6
+# psycopg2-binary==2.9.1
+# psycopg2==2.9.1
