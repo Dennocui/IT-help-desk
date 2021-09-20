@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Issue Logs {% endblock %} 
+{% block title %} Logs {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -22,6 +22,7 @@
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
             <h1 class="h4">Issue Logs</h1>
+            <a href="{% url 'issue_log:create-issue' %}" class="btn btn-info" type="button">Add New</a>
             <!-- <p class="mb-0">Dozens of reusable components built to provide buttons, alerts, popovers, and more.</p> -->
         </div>
        
@@ -32,7 +33,9 @@
 
 
 <div class="card border-0 shadow mb-4">
+    
     <div class="card-body">
+        
         <div class="table-responsive">
             <table class="table table-centered table-nowrap mb-0 rounded">
                 <thead class="thead-light">
@@ -47,13 +50,13 @@
                         
                         <th class="border-0">Issue Date</th>
                         <th class="border-0">Due Date</th>
-                        <!-- <th class="border-0"></th> -->
+            <!-- <th class="border-0"></th> -->
                         <th class="border-0 rounded-end">Comments</th>
                         <th class="border-0">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Item -->
+            <!-- Item -->
                     {% for i in issues %}
                     <tr>
                         <td>{{ i.user }}</td>
@@ -66,9 +69,15 @@
                         <td>{{ i.issue_date }}</td>
                         <td>{{ i.due_date }}</td>
                         <td>{{ i.comments }}</td>
-                        <td>{{ i.status }}</td>
+                        <td>
+                        {% if i.status == 'OPEN' %}
+                        <button class="btn btn-danger" type="button">OPEN</button>
+                        {% elif i.status == 'CLOSED' %}
+                        <button class="btn btn-success" type="button">CLOSED</button>
+                        {% endif %}
+                        </td>
                     </tr>
-                    <!-- End of Item -->
+            <!-- End of Item -->
                     {% endfor %}
             
                 </tbody>

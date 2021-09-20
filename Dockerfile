@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.9.6-slim-buster
+FROM python:3.9.7-buster
 
 ENV DJANGO_DB_NAME=ffs
 ENV DJANGO_SU_NAME=admin

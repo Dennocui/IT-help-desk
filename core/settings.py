@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
+SECRET_KEY = config('SECRET_KEY', default='((i(1^aiqq9*5)tzv*v=4(#m6ryf$#t*3wgsz^954zvt&3oguy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'smart_selects',
     'rangefilter',
     'rest_framework',
+    'crispy_forms',
+    'import_export',
     
 
     'app',  # Enable the inner app 
@@ -118,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 LANGUAGE_CODE = 'en-us'
 
@@ -129,6 +132,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+CRISPY_TEMPLATE_PACK = 'uni_form'
+USE_DJANGO_JQUERY = True
 #############################################################
 # SRC: https://devcenter.heroku.com/articles/django-assets
 

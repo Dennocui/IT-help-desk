@@ -1,0 +1,130 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Create Log {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+  <div class="py-4">
+      <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+          <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+              <li class="breadcrumb-item">
+                  <a href="#">
+                      <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                  </a>
+              </li>
+              <li class="breadcrumb-item"><a href="{% url 'issue_log:issue-list' %}">Issue logs</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Create Log</li>
+          </ol>
+      </nav>
+      <div class="d-flex justify-content-between w-100 flex-wrap">
+          <div class="mb-3 mb-lg-0">
+              <h1 class="h4">Create Log</h1>
+              {% comment %} <p class="mb-0">Dozens of reusable components built to provide buttons, alerts, popovers, and more.</p> {% endcomment %}
+          </div>
+          <div>
+          </div>
+      </div>
+  </div>
+
+
+   <div class="row">
+      <div class="col-12 mb-4">
+          <div class="card border-0 shadow components-section">
+              <div class="card-body"> 
+                    <form method="post">
+                        
+                        {% csrf_token %}
+
+                        {{ form.media.js }}
+
+                        <!-- First Row -->
+                            <div class="row mb-4">
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.user|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.personel_assinged|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- End first Row -->
+
+                            <!-- Second row -->
+                            <div class="row mb-4">
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.category|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.sub_category|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.mini_category|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- End Second row -->
+
+                            <!-- Third Row -->
+                            <div class="row mb-4">
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.issue|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.priority|as_crispy_field }}
+                                </div>
+                               
+                            </div>
+                            <!-- End third row -->
+                            <!-- Fourth Row -->
+                            <div class="row mb-4">
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.issue_date|as_crispy_field }}
+                                </div>
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.due_date|as_crispy_field }}
+                                </div>
+                                
+                            </div>
+                            <!-- End 4th row -->
+
+                            <!-- 5th row -->
+                            <div class="row mb-4">
+                                <div class="col-lg-2 col-sm-2">
+                                    {{ form.status|as_crispy_field }}
+                                </div>
+                                
+                            </div>
+                            <!-- End 5th row -->
+                            <!-- 6th row -->
+                            <div class="row mb-4">
+                                
+                                <div class="col-lg-10 col-sm-10">
+                                    {{ form.comments|as_crispy_field }}
+                                </div>
+                            </div>
+                        <!-- end 6th row  -->
+
+
+
+                    </form>
+              
+
+
+              </div>
+           </div>
+       </div>
+    </div>
+ 
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+{% endblock javascripts %}

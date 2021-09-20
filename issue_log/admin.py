@@ -5,12 +5,14 @@ from rangefilter.filter import DateRangeFilter, DateTimeRangeFilter
 
 
 from .models import IssueLog
+from import_export.admin import ImportExportModelAdmin
+from . resources import IssueLogResource
 
 # admin.site.register(IssueLog)
 
 
 @ admin.register(IssueLog)
-class IssueLogAdmin(admin.ModelAdmin):
+class IssueLogAdmin(ImportExportModelAdmin):
     # resource_class = IssueLogResource
     list_display = ('user','category', 'sub_category','mini_category' ,'issue', 'personel_assinged','priority', 'status','issue_date', 'due_date', 'comments')
     list_filter = (('issue_date', DateRangeFilter,), ('category'),('sub_category'),
