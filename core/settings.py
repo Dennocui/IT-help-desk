@@ -31,16 +31,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'smart_selects',
+    
     'rangefilter',
     'rest_framework',
     'crispy_forms',
     'import_export',
     
+    
 
     'app',  # Enable the inner app 
     'category',
     'issue_log',
+    'smart_selects',
 ]
 
 MIDDLEWARE = [
@@ -132,8 +134,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
-USE_DJANGO_JQUERY = True
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# USE_DJANGO_JQUERY = True
+USE_JQUERY_DJANGO = True
 #############################################################
 # SRC: https://devcenter.heroku.com/articles/django-assets
 
