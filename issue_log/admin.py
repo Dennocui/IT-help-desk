@@ -13,7 +13,7 @@ from . resources import IssueLogResource
 
 @ admin.register(IssueLog)
 class IssueLogAdmin(ImportExportModelAdmin):
-    # resource_class = IssueLogResource
+    resource_class = IssueLogResource
     list_display = ('user','category', 'sub_category','mini_category' ,'issue', 'personel_assinged','priority', 'status','issue_date', 'due_date', 'comments')
     list_filter = (('issue_date', DateRangeFilter,), ('category'),('sub_category'),
                    ('status'), )
@@ -25,7 +25,11 @@ class IssueLogAdmin(ImportExportModelAdmin):
         ('Basic Information', {
             #   'description': "Player Bio Data.", ('customer', ), ('tonnage', 'zone', 'location'), ('truck', 'driver')
             'fields': (
-                ('user','personel_assinged'),('category','sub_category','mini_category'),('issue','priority'),('issue_date','due_date'),('status',),('comments')  
+                ('user'),('category','sub_category','mini_category'),('issue','priority'),('issue_date','due_date'),('status',),('comments')  
                        )}),
 
     )
+
+    def save_model(self, request, obj, form, change):
+        obj.personel_assinged = request.user
+        obj.save()

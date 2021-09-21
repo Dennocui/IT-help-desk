@@ -60,7 +60,9 @@ class IssueLog(models.Model):
         chained_model_field="sub_category",
         show_all=False,
         auto_choose=True,
-        sort=True)
+        sort=True,
+        null=True,
+        blank=True)
 
     # sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
 
