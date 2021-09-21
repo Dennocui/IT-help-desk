@@ -32,5 +32,10 @@ class CreateIssue(CreateView):
     form_class =  IssueLogForm 
     success_url = reverse_lazy('issue_log:issue-list')
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
 
  
