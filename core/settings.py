@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'import_export',
+    'widget_tweaks',
     
     
 

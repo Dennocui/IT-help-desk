@@ -1,5 +1,6 @@
 {% extends "layouts/base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 {% load crispy_forms_tags %}
 
 
@@ -7,12 +8,17 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
+
 {% endblock stylesheets %}
 
+{% block extra_head %}
 
+{% endblock %}
 
 
 {% block content %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+
   <div class="py-4">
       <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
           <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
@@ -45,40 +51,109 @@
                         {% csrf_token %}
 
                         {{ form.media.js }}
+                        {% comment %} {{ form.media }} {% endcomment %}
                         
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+
+                        
+
+            
 
                         <!-- First Row -->
                             <div class="row mb-4">
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.user|as_crispy_field }}
+                                    <label for="{{ form.user.id_for_label }}">{{ form.user.label }}</label>
+                                    {% render_field form.user class="form-control" placeholder=form.user.label %}
+
+                                    <div class="{% if form.user.errors %} invalid{% endif %}">
+                                    {% for error in form.user.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.personel_assinged|as_crispy_field }}
+
+                                   
+                                    {% render_field form.personel_assinged.as_hidden %}
+
+                                  
                                 </div>
-                            </div>
+
+                                </div>
+                          
                             <!-- End first Row -->
 
                             <!-- Second row -->
                             <div class="row mb-4">
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.category|as_crispy_field }}
+                                  
+
+                                    <label for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
+                                    {% render_field form.category class="form-control" placeholder=form.category.label %}
+
+                                    <div class="{% if form.category.errors %} invalid{% endif %}">
+                                    {% for error in form.category.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.sub_category|as_crispy_field }}
+                                   
+                                    <label for="{{ form.sub_category.id_for_label }}">{{ form.sub_category.label }}</label>
+                                    {% render_field form.sub_category class="form-control" placeholder=form.sub_category.label %}
+
+                                    <div class="{% if form.sub_category.errors %} invalid{% endif %}">
+                                    {% for error in form.sub_category.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.mini_category|as_crispy_field }}
+                                
+                                    <label for="{{ form.mini_category.id_for_label }}">{{ form.mini_category.label }}</label>
+                                    {% render_field form.mini_category class="form-control" placeholder=form.mini_category.label %}
+
+                                    <div class="{% if form.mini_category.errors %} invalid{% endif %}">
+                                    {% for error in form.mini_category.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                             </div>
                             <!-- End Second row -->
 
                             <!-- Third Row -->
                             <div class="row mb-4">
-                                <div class="col-lg-2 col-sm-2">
-                                    {{ form.issue|as_crispy_field }}
+                                <div class="col-lg-4 col-sm-4">
+                                   
+
+                                    <label for="{{ form.issue.id_for_label }}">{{ form.issue.label }}</label>
+                                    
+                                    {% render_field form.issue class="form-control" placeholder=form.issue.label %}
+
+                                    <div class="{% if form.issue.errors %} invalid{% endif %}">
+                                    {% for error in form.issue.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.priority|as_crispy_field }}
+                                  
+
+                                    <label for="{{ form.priority.id_for_label }}">{{ form.priority.label }}</label>
+                                    {% render_field form.priority class="form-control" placeholder=form.priority.label %}
+
+                                    <div class="{% if form.priority.errors %} invalid{% endif %}">
+                                    {% for error in form.priority.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                                
                             </div>
@@ -86,28 +161,67 @@
                             <!-- Fourth Row -->
                             <div class="row mb-4">
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.issue_date|as_crispy_field }}
+                                   
+
+                                    <label for="{{ form.issue_date.id_for_label }}">{{ form.issue_date.label }}</label>
+                                    {% render_field form.issue_date class="form-control" placeholder=form.issue_date.label %}
+
+                                    <div class="{% if form.issue_date.errors %} invalid{% endif %}">
+                                    {% for error in form.issue_date.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                                 <div class="col-lg-2 col-sm-2">
-                                    {{ form.due_date|as_crispy_field }}
+
+                                    <label for="{{ form.due_date.id_for_label }}">{{ form.due_date.label }}</label>
+                                    {% render_field form.due_date class="form-control" placeholder=form.due_date.label %}
+
+                                    <div class="{% if form.due_date.errors %} invalid{% endif %}">
+                                    {% for error in form.due_date.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                                 
+                                <div class="col-lg-2 col-sm-2">
+
+                                    <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+                                    {% render_field form.status class="form-control" placeholder=form.status.label %}
+
+                                    <div class="{% if form.status.errors %} invalid{% endif %}">
+                                    {% for error in form.status.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
+                                </div>
                             </div>
                             <!-- End 4th row -->
 
                             <!-- 5th row -->
                             <div class="row mb-4">
-                                <div class="col-lg-2 col-sm-2">
-                                    {{ form.status|as_crispy_field }}
-                                </div>
+                                
                                 
                             </div>
                             <!-- End 5th row -->
                             <!-- 6th row -->
                             <div class="row mb-4">
                                 
-                                <div class="col-lg-10 col-sm-10">
-                                    {{ form.comments|as_crispy_field }}
+                                <div class="col-lg-5 col-sm-5">
+                                  
+
+                                    <label for="{{ form.comments.id_for_label }}">{{ form.comments.label }}</label>
+                                    {% render_field form.comments class="form-control" placeholder=form.comments.label %}
+
+                                    <div class="{% if form.comments.errors %} invalid{% endif %}">
+                                    {% for error in form.comments.errors %}
+                                    <p class="help-block">{{ error }}</p>
+                                    {% endfor %}
+                                    </div>
+
                                 </div>
                             </div>
                         <!-- end 6th row  -->
@@ -124,10 +238,17 @@
     </div>
  
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
 {% endblock content %}
+
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 
+
+<script>
+    $(function () {
+      $("#datepicker").datepicker();
+    });
+  </script>
 {% endblock javascripts %}
