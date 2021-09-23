@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic.edit import CreateView
 from .models import IssueLog
 from .forms import IssueLogForm
-
+from .filters import IssueLogFilter
 # Create your views here.
 
 @login_required(login_url="/login/")
@@ -18,8 +18,25 @@ def issue_list(request):
 
     issues = IssueLog.objects.all()
 
+    issues_filters = IssueLogFilter(request.GET, queryset=issues)
+    issues_filter_qs =issues_filters.qs
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(issues_filter_qs , 10)
+
+    try:
+        issues_filter = paginator.page(page)
+    except PageNotAnInteger:
+        issues_filter = paginator.page(1)
+    except EmptyPage:
+        issues_filter = paginator.page(paginator.num_pages)
+
+
     context = {
         "issues": issues,
+        "issues_filters": issues_filters,
+        "issues_filter":issues_filter,
     }
     context['segment'] = 'issues'
 
