@@ -9,5 +9,6 @@ urlpatterns = [
     
     path('issue-list', views.issue_list, name='issue-list'),
     path('create-isssue', views.CreateIssue.as_view(), name='create-issue'),
+    path('update-issue/<int:pk>', views.UpdateIssue.as_view(), name ='update-issue'),
     
 ]

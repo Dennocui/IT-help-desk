@@ -7,7 +7,7 @@ from django import template
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
-from django.views.generic.edit import CreateView
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
 from .models import IssueLog
 from .forms import IssueLogForm
 from .filters import IssueLogFilter
@@ -45,7 +45,7 @@ def issue_list(request):
 
 class CreateIssue(CreateView):
     model = IssueLog
-    template_name = 'issue_log/create.html'
+    template_name = 'issue_log/form.html'
     form_class =  IssueLogForm 
     success_url = reverse_lazy('issue_log:issue-list')
 
@@ -55,4 +55,18 @@ class CreateIssue(CreateView):
         return kwargs
 
 
- 
+class UpdateIssue(UpdateView):
+    model= IssueLog
+    template_name = 'issue_log/form.html'
+    form_class = IssueLogForm
+    success_url = reverse_lazy('issue_log:issue-list')
+
+
+class ViewIssue(DetailView):
+    model =IssueLog
+    template_name = 'issuer_log/detail.html'
+
+
+class DeleteIssue(DeleteView):
+    model = IssueLog
+    success_url = reverse_lazy('issue_log:issue-list')

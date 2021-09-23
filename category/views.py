@@ -5,14 +5,17 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
-from .models import Category
+
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
+
+from .models import Category, SubCategory,MiniCategory
 
 # Create your views here.
 
 @login_required(login_url="/login/")
 def category_list(request):
 
-    categories = Category.objects.all()
+    categories = SubCategory.objects.select_related()
 
     context = {
         "categories": categories,
@@ -21,6 +24,8 @@ def category_list(request):
 
     html_template = loader.get_template( 'category/category_list.html' )
     return HttpResponse(html_template.render(context, request))
+
+
     
 
 @login_required(login_url="/login/")
