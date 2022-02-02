@@ -24,6 +24,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,24 +86,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME'  : 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'issue_log',
-        'USER': 'postgres',
-        'PASSWORD':'times',
-        'HOST': 'db', # set in docker-compose.yml
-        'PORT': 5432 # default postgres port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME'  : 'db.sqlite3',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'issue_log',
+#         'USER': 'postgres',
+#         'PASSWORD':'times',
+#         'HOST': 'db', # set in docker-compose.yml
+#         'PORT': 5432 # default postgres port
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -121,6 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
