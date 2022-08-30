@@ -11,7 +11,7 @@ class IssueLogFilter(django_filters.FilterSet):
 
     class Meta:
         model= IssueLog
-        fields = ['user', 'personel_assinged', 'issue_date', 'due_date', 'priority', 'status','category', 'sub_category', 'mini_category']
+        fields = ['user', 'personel_assinged', 'issue_date', 'due_date', 'priority', 'status','equipment_type', 'equipment_make', 'equipment_brand','equipment_model']
 
     # def __init__(self, *args, **kwargs):
     #        super(TripFilter, self).__init__(*args, **kwargs)

@@ -7,8 +7,8 @@ from datetime import datetime, date
 # Create your models here.
 
 
-class Category(models.Model):
-    name = models.CharField('Category', max_length=30)
+class EquipmentType(models.Model):
+    name = models.CharField('Equipment Type', max_length=30)
     created_at = models.DateTimeField(
         'Joined', auto_now=True, auto_now_add=False)
     last_modified = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -18,12 +18,30 @@ class Category(models.Model):
         return "{}".format(self.name[:25])
 
     class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
+        verbose_name = "Equipment Type"
+        verbose_name_plural = "Equipment Types"
 
-class SubCategory(models.Model):
-    name = models.CharField('Sub-Category', max_length=30)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+class EquipmentMake(models.Model):
+    name = models.CharField('Equipment Make', max_length=30)
+    equipment_type = models.ForeignKey(EquipmentType, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(
+        'Joined', auto_now=True, auto_now_add=False)
+    last_modified = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+    def __str__(self):
+        return "{}".format(self.name[:25])
+
+    class Meta:
+        verbose_name = "Equipment Make"
+        verbose_name_plural = "Equipment Make"
+
+
+
+class EquipmentBrand(models.Model):
+    name = models.CharField('Equipment Brand', max_length=30)
+    equipment_make = models.ForeignKey(EquipmentMake, on_delete=models.CASCADE)
     created_at = models.DateTimeField(
         'Joined', auto_now=True, auto_now_add=False)
     last_modified = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -34,12 +52,12 @@ class SubCategory(models.Model):
 
 
     class Meta:
-        verbose_name = "Sub-Category"
-        verbose_name_plural = "Sub-Categories"
+        verbose_name = "Equipment Brand"
+        verbose_name_plural = "Equipment Brands"
 
-class MiniCategory(models.Model):
-    name = models.CharField('Mini-Category', max_length=30)
-    sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+class EquipmentModel(models.Model):
+    name = models.CharField('Equipment Model', max_length=30)
+    equipment_brand = models.ForeignKey(EquipmentBrand, on_delete=models.CASCADE)
     created_at = models.DateTimeField(
         'Joined', auto_now=True, auto_now_add=False)
     last_modified = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -50,8 +68,8 @@ class MiniCategory(models.Model):
 
 
     class Meta:
-        verbose_name = "Mini-Category"
-        verbose_name_plural = "Mini-Categories"
+        verbose_name = "Equipment Model "
+        verbose_name_plural = "Equipment Models"
 
 
 

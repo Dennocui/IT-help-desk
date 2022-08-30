@@ -3,34 +3,48 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Category, SubCategory, MiniCategory
+from category.models import EquipmentType, EquipmentModel, EquipmentMake,EquipmentBrand
 
-admin.site.register(Category)
+admin.site.register(EquipmentType)
 
-@ admin.register(SubCategory)
-class SubCategoryAdmin(admin.ModelAdmin):
+@ admin.register(EquipmentModel)
+class EquipmentTypeAdmin(admin.ModelAdmin):
     # resource_class = IssueLogResource
-    list_display = ('category', 'name')
+    list_display = ('equipment_brand', 'name')
 
     fieldsets = (
         ('Basic Information', {
            
             'fields': (
-                ('category', 'name') 
+                ('equipment_brand', 'name') 
                        )}),
 
     )
 
-@ admin.register(MiniCategory)
-class MiniCategoryAdmin(admin.ModelAdmin):
+@ admin.register(EquipmentMake)
+class EquipmentMakeAdmin(admin.ModelAdmin):
     # resource_class = IssueLogResource
-    list_display = ('sub_category','name')
+    list_display = ('equipment_type','name')
 
     fieldsets = (
         ('Basic Information', {
            
             'fields': (
-                ('sub_category','name') 
+                ('equipment_type','name') 
+                       )}),
+
+    )
+
+@ admin.register(EquipmentBrand)
+class EquipmentBrandAdmin(admin.ModelAdmin):
+    # resource_class = IssueLogResource
+    list_display = ('equipment_make','name')
+
+    fieldsets = (
+        ('Basic Information', {
+           
+            'fields': (
+                ('equipment_make','name') 
                        )}),
 
     )

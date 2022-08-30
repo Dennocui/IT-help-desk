@@ -16,7 +16,7 @@ class IssueLogForm(forms.ModelForm):
     # personel_assinged = forms.Select(widget=forms.HiddenInput())
     class Meta:
         model = IssueLog
-        fields = ['user','category', 'sub_category', 'mini_category','issue','personel_assinged','priority','issue_date','due_date','comments','status']
+        fields = ['user','equipment_type', 'equipment_make', 'equipment_brand','equipment_model','issue','personel_assinged','priority','issue_date','due_date','comments','status']
         widgets = {
           'comments': forms.Textarea(attrs={'rows':4, 'cols':15}),
         }

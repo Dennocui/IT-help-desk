@@ -8,14 +8,14 @@ from django import template
 
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView
 
-from .models import Category, SubCategory,MiniCategory
+from .models import EquipmentType, EquipmentModel, EquipmentMake,EquipmentBrand
 
 # Create your views here.
 
 @login_required(login_url="/login/")
 def category_list(request):
 
-    categories = SubCategory.objects.select_related()
+    categories = EquipmentMake.objects.select_related()
 
     context = {
         "categories": categories,

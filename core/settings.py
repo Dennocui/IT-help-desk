@@ -8,6 +8,7 @@ from decouple import config
 from unipath import Path
 import dj_database_url
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +20,7 @@ SECRET_KEY = config('SECRET_KEY', default='((i(1^aiqq9*5)tzv*v=4(#m6ryf$#t*3wgsz
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','0.0.0.0']
 
 # Application definition
 
@@ -33,7 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    
+    'smart_selects',
     'rangefilter',
     'rest_framework',
     'crispy_forms',
@@ -41,13 +42,12 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     
-    
-
     'app',  # Enable the inner app 
     'category',
+   
+    
+    'assets',
     'issue_log',
-    'smart_selects',
-    'asset',
 ]
 
 MIDDLEWARE = [
@@ -125,8 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

@@ -12,9 +12,9 @@ class IssueLogResource(resources.ModelResource):
     
     user = Field(column_name = 'User', attribute='user') 
     personel_assinged = Field(column_name = 'Personel Assinged', attribute='personel_assinged')
-    category__name = Field(column_name = 'Category', attribute='category__name')
-    sub_category__name= Field(column_name ='Sub-Category', attribute='sub_category__name')
-    mini_category__name= Field(column_name ='Mini-Category', attribute='mini_category__name')
+    equipment_type__name = Field(column_name = 'Equipment Type', attribute='equipment_type__name')
+    equipment_make__name= Field(column_name ='Equipment Make', attribute='equipment_make__name')
+    equipment_brand__name= Field(column_name ='Equipment Brand', attribute='equipment_brand__name')
     issue_date = Field(column_name = 'Issue Date', attribute='issue_date')
     due_date= Field(column_name = 'Due Date', attribute='due_date')
     issue = Field(column_name = 'Issue', attribute='issue')
@@ -25,5 +25,5 @@ class IssueLogResource(resources.ModelResource):
 
     class Meta:
         model = IssueLog
-        fields = ('personel_assinged','user','category__name', 'sub_category__name','mini_category__name' ,'issue', 'priority','issue_date', 'due_date','status', 'comments')
-        export_order = ('personel_assinged','user','category__name', 'sub_category__name','mini_category__name' ,'issue','priority', 'issue_date', 'due_date', 'status','comments')
+        fields = ('personel_assinged','user','equipment_type__name', 'equipment_make__name','equipment_brand__name' ,'issue', 'priority','issue_date', 'due_date','status', 'comments')
+        export_order = ('personel_assinged','user','equipment_type__name', 'equipment_make__name','equipment_brand__name' ,'issue','priority', 'issue_date', 'due_date', 'status','comments')

@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from datetime import datetime, date
 
-from category.models import SubCategory, Category, MiniCategory
+from category.models import EquipmentType, EquipmentModel, EquipmentMake,EquipmentBrand
 from django.contrib.auth.models import User
 from smart_selects.db_fields import ChainedForeignKey
 
@@ -45,19 +45,31 @@ class IssueLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='issuelogs')
     personel_assinged = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    sub_category = ChainedForeignKey(
-        SubCategory,
-        chained_field="category",
-        chained_model_field="category",
+    equipment_type = models.ForeignKey(EquipmentType, on_delete=models.CASCADE)
+
+
+    equipment_make =  ChainedForeignKey(
+        EquipmentMake,
+        chained_field="equipment_type",
+        chained_model_field="equipment_type",
         show_all=False,
         auto_choose=True,
         sort=True)
-    
-    mini_category = ChainedForeignKey(
-        MiniCategory,
-        chained_field="sub_category",
-        chained_model_field="sub_category",
+
+    equipment_brand = ChainedForeignKey(
+        EquipmentBrand,
+        chained_field="equipment_make",
+        chained_model_field="equipment_make",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        null=True,
+        blank=True)
+
+    equipment_model = ChainedForeignKey(
+        EquipmentModel,
+        chained_field="equipment_brand",
+        chained_model_field="equipment_brand",
         show_all=False,
         auto_choose=True,
         sort=True,
